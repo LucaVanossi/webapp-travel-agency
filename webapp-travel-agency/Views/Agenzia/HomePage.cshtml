@@ -1,0 +1,121 @@
+﻿@model List<Viaggio>
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>La mia agenzia</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  </head>
+  
+  <body>
+
+      <a class="btn btn-primary"
+                href="@Url.Action("Create", "Viaggio")">
+                Nuovo post
+      </a>
+
+   
+
+@if(Model.Count() ==0)
+    {
+        <h3>Non sono presenti Viaggi</h3>
+    } else
+    {
+        
+        
+        <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Numero Viaggio</th>
+      <th scope="col">Foto</th>
+      <th scope="col">Nome Viaggio</th>
+      <th scope="col">Descrizione Viaggio</th>
+    </tr>
+  </thead>
+ 
+  <tbody>
+
+      @foreach(Viaggio viaggiDellaLista in Model)
+                    {
+                       <tr>
+                          <td>@viaggiDellaLista.Id</td>
+                          @* <th scope="row">1</th>*@
+                          <td><img src="@viaggiDellaLista.Image" class="img-fluid"></td>
+                          <td>@viaggiDellaLista.Name</td>
+                          <td>@viaggiDellaLista.Description</td>
+                          <td>
+                              <a class="btn btn-info btn-sm" href="/Viaggio/Details/@viaggiDellaLista.Id" >
+                               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>                               
+                               </svg>
+                              </a>
+                              <a class="btn btn-warning btn-sm" href="/Viaggio/Update/@viaggiDellaLista.Id">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polygon points="14 2 18 6 7 17 3 17 3 13 14 2"></polygon><line x1="3" y1="22" x2="21" y2="22"></line></svg>
+                              </a>
+                              <form action="@Url.Action("Delete", "Viaggio", new {id= viaggiDellaLista.Id})" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                                        </button>
+                                    </form>
+                          </td>
+                        </tr> 
+                      }
+   </tbody>
+</table>
+
+}
+
+
+        
+
+@*<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Numero Pizza</th>
+      <th scope="col">Foto</th>
+      <th scope="col">Nome Pizza</th>
+      <th scope="col">Descrizione Pizza</th>
+    </tr>
+  </thead>
+ 
+  <tbody>
+     
+      
+      <tr>
+      <th scope="row">1</th>
+      <td><img src="~/img/Pizza-margherita.jpg" class="img-fluid" alt="Pizza Margherita"></td>
+      <td>Pizza Margherita</td>
+      <td>La pizza è molto buona!</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td><img src="~/img/pizza-marinara.jpg" class="img-fluid" alt="Pizza Marinara"></td>
+      <td>Pizza Marinara</td>
+      <td>La pizza è molto buona!</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td><img src="~/img/pizza-al-prosciutto-crudo.jpg" class="img-fluid" alt="Pizza con Prosciutto"></td>
+      <td>Pizza con Prosciutto</td>
+      <td>La pizza è molto buona!</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="row">4</th>
+      <td><img src="~/img/pizza-con-tonno-e-mozzarella.jpg" class="img-fluid" alt="Pizza con Tonno"></td>
+      <td>Pizza con Tonno</td>
+      <td>La pizza è molto buona!</td>
+      <td></td>
+    </tr>*@
+
+ 
+      
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
+
+</html>
